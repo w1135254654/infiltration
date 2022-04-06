@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>渗透</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- 设置浏览器页面标签图标 -->
+	<link rel="icon" href="assets/image/icon/图标.webp" type="image/x-icon" />
+	<link rel="shortcut icon" href="assets/image/icon/图标.webp" type="image/x-icon" />
+
+	<meta name="description" content="Description">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+	<!-- 项目初始化时获取默认主题的版本 -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+
+	<!-- 切换夜间模式 -->
+	<!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" 
+		title="docsify-darklight-theme" type="text/css" />-->
+
+
+	<!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.css" /> -->
+
+
+	<!-- 文档化打印 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/css/docsify-print.css"></script> -->
+	<!-- 远程服务器资源 -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-print@latest/dist/style.css" />
+
+
+	<!-- 单击查看源代码 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/css/docsify-view-source.css"></script> -->
+	<!-- 远程服务器资源 -->
+	<link rel="stylesheet" href="//unpkg.com/docsify-view-source/styles.css" />
+
+
+	<style>
+		/* 横版样式 */
+		/* .sidebar,
+		.sidebar-toggle {
+			display: none;
+		} */
+
+		/* .markdown-section h1,
+		.markdown-section h2,
+		.markdown-section h3 {
+			text-align: center;
+			padding-bottom: 20px;
+			border-bottom: 1px solid #ccc;
+		} */
+
+		/* .markdown-section h3 {
+			text-align: left;
+			border-bottom: 0;
+		} */
+
+		/* 覆盖腾讯企业邮箱的设置 */
+		/* .content {
+			position: relative !important;
+			left: 0;
+		} */
+
+		/* main {
+			height: auto !important;
+		} */
+
+		/* img {
+			width: 100%;
+			margin-bottom: 10px;
+		} */
+
+		/* em {
+			font-size: 12px;
+		} */
+
+		/* 横版样式 */
+
+
+		/* Docsify 的简单分享按钮 */
+		/* .fabs {
+			bottom: 100px !important;
+		} */
+
+		/* 返回顶部的插件 */
+		.scroll-to-top:hover {
+			background-color: #42b983 !important;
+			color: #fff !important;
+		}
+
+		code {
+			/* font-family: consolas !important; */
+			font-size: 1.05rem !important;
+		}
+
+		/* 国家公祭日专属主题，方法一 */
+		/* html {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+	-webkit-filter: grayscale(100%);
+	} */
+
+
+		/* 国家公祭日专属主题，方法二 */
+		/* html {
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+	} */
+	</style>
+
+</head>
+
+<body>
+	<div id="app">文档更新维护中，请稍后再试。。。</div>
+
+	<script>
+		window.$docsify = {
+			name: '<img src="assets/image/icon/图标.webp"  title="渗透图标" width="20" height="20" /> 渗透',
+			repo: 'true', // 'https://gitee.com/shentou_infiltration/infiltration.git'
+			// 基于Docsify repo 配置的角配置增强。
+			corner: {
+				// git仓库链接地址  
+				url: "https://gitee.com/shentou_infiltration/infiltration.git",
+				// docsify-corner 中的预设图标 默认为"github"
+				icon: "assets/image/icon/代码流星雨.gif",
+				// 图片大小
+				width: 120,
+				height: 120,
+				color: 'red',
+				background: 'red',
+				title: '仓库链接地址'
+			},
+			homepage: '首页.md',	// 设置默认入口文件
+			loadNavbar: '导航栏.md',	// 加载自定义导航栏，若设置为true，则默认加载_navbar.md文件导航栏
+			loadSidebar: '侧边栏.md',   // 加载自定义侧边栏，若设置为true，则默认加载_sidebar.md文件侧边栏
+			autoHeader: true,		//自动为每个页面增加标题。
+			maxLevel: 4,    // 默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级。
+			subMaxLevel: 4,   // 生成目录的最大层级
+			auto2top: true,		// 切换页面后是否自动跳转到页面顶部。
+			topMargin: 10,		// 内容距离顶部的高度
+			//themeColor: '#3F51B5',		// 替换主题颜色
+			executeScript: true,	// 要运行您自己的<script>脚本标签，您必须使用参数启用它。
+
+
+			// 全文搜索插件会根据当前页面上的超链接获取文档内容
+			search: {
+				maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+				paths: 'auto',		// 使用不同的索引作为路径前缀（namespaces），注意：仅适用于 paths: 'auto' 模式
+				placeholder: '🔍 请输入搜索内容关键词',
+				noData: '找不到结果!',
+				depth: 3,		// 搜索标题的最大层级, 1 - 6
+			},
+
+
+			//代码一键复制
+			copyCode: {
+				buttonText: '复制代码',
+				errorText: '复制失败',
+				successText: '复制成功'
+			},
+
+
+			// docsify的章节分页导航插件
+			pagination: {
+				previousText: '上一章节',
+				nextText: '下一章节',
+				crossChapter: true,		// 允许导航到上一章/下一章。
+				crossChapterText: true,		// 显示章节名称。
+			},
+
+
+			// 基于Docsify的页面滚动回顶部的插件
+			scrollToTop: {
+				auto: true,			// 是否自动隐藏按钮
+				//text: 'Top',		// 按钮文字
+				icon: 'arrow-up-1',		// 图标样式，该属性值有两个可选项:（arrow-up-1和arrow-up-2）,当scrollToTop.text和scrollToTop.icon属性都配置时，显示scrollToTop.text的配置内容
+				right: 15,		// 按钮距离窗口右侧距离
+				bottom: 15,		// 按钮距离窗口底部距离
+				width: 50,	// 按钮元素的宽度
+				height: 50,	// 按钮元素的高度
+				offset: 500		// 页面滚动多少距离后显示按钮，当auto配置为true时才有效果
+			},
+
+
+			// 提供了统计中文汉字和英文单词的功能
+			count: {
+				countable: true,		// 是否统计展示字符
+				position: 'top',		// 设置展示位置(默认值'top')
+				margin: '50px',			// 设置与邻近DOM的距离
+				float: 'right',			// 设置元素对齐(默认值'right')
+				fontsize: '0.9em',		// 设置字体大小
+				color: 'rgb(90,90,90)',	// 设置颜色
+				language: 'chinese',		// 设置语言
+			},
+
+
+			// 右侧标题导航
+			toc: {
+				tocMaxLevel: 5,
+				target: 'h2, h3, h4, h5, h6'
+			},
+
+
+			// docsify plugin: 漂亮的提示窗口
+			'flexible-alerts': {
+				note: {
+					label: "说明"
+				},
+				tip: {
+					label: "提示"
+				},
+				warning: {
+					label: "警告"
+				},
+				attention: {
+					label: "注意"
+				}
+			},
+
+
+			// docsify-valine评论系统
+			Valine: {
+				appId: 'NLTHt6nVlSTszglp6dF4pJui-gzGzoHsz',
+				appKey: 'u28rg1RjcnNixzTDATANDtof',
+				visitor: true,		// 文章访问量统计
+				placeholder: '指正错误和问题反馈，大家可以在这里提出',	// 评论框占位提示符
+				avatar: 'retro',	// 默认Gravatar 头像展示方式
+				pageSize: 10,		// 评论列表分页，每页条数
+
+			},
+
+
+			// 为每个 docsify markdown 添加更新时间
+			timeUpdater: {
+				text: ">最后更新时间: {docsify-updated}",
+				formatUpdated: "{YYYY}年{MM}月{DD}日",
+			},
+
+
+			// 在 docsify 中插入 cc 知识共享协议标识 的插件
+			// 这个是必须要填的，如果你没有填，插件会以 console.warn 的方式提醒你
+			"cc-license": {
+				lang: "zh", //zh en ja
+				commercial: "n", // y or n 允许对您的作品进行商业性使用吗？
+				derivatives: "n", // y or n or sa 允许您的作品的演绎作品被共享吗？ sa 表示 是的，只要他人以相同方式共享
+			},
+
+
+			// docsify-waline简单的评论插件
+			// waline: {
+			// 	serverURL: "https://notes-cxtya7jf7-w1135254654.vercel.app",
+			// 	docPath: "default: hash", // 对应 waline 的 path 参数
+			// }
+
+
+			// 在线修改文档内容
+			plugins: [
+				function (hook, vm) {
+					hook.beforeEach(function (html) {
+						var url =
+							'https://wangchao-study-notes.gitee.io/docs/' +
+							vm.route.file;
+						var editHtml = '[📝 在线修改文档内容](' + url + ')\n';
+
+						return (
+							editHtml +
+							html +
+							'\n----\n' +
+							'Last modified {docsify-updated} ' +
+							editHtml
+						);
+					});
+				}
+			],
+
+
+			// Docsify的页脚增强插件
+			footer: {
+				copy: '<span>Acme &copy; 2020</span>',
+				auth: 'wangchao',
+				pre: '<hr/>',
+				style: 'text-align: right;',
+				class: 'className',
+			},
+
+		}
+	</script>
+
+
+	<!-- 基于Docsify repo 配置的角配置增强。 -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-corner.js"></script>
+	<!-- 远程服务器资源 -->
+	<!-- <script src="//cdn.jsdelivr.net/npm/docsify-corner/dist/docsify-corner.js"></script> -->
+
+
+
+	<!-- 文档化打印 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/printjs-4de6-kxcdn-com.min.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/docsify-print.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script src="https://cdn.jsdelivr.net/npm/docsify-print@latest/dist/index.js"></script>
+
+
+	<!-- 单击查看源代码 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/docsify-view-source.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script src="//unpkg.com/docsify-view-source/index.js"></script>
+
+
+	<!--Docsify的页脚增强插件 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/docsify-footer-enh.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script src="//unpkg.com/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script>
+
+
+	<!--docsify 插件：使用 pangu.js 给网页上的中文和英文、数字、符号之间添加空格 -->
+	<!-- 本地资源，有外链 -->
+	<script src="assets/js/docsify-pangu.min.js"></script>
+	<!-- 远程服务器资源 -->
+	<!-- <script src="//cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script> -->
+
+
+	<!-- 在 docsify 中插入 cc 知识共享协议标识 的插件 -->
+	<!-- 本地资源问题 -->
+	<!-- <script type="module" src="assets/js/docsify-cc-license.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script type="module" src="https://cdn.jsdelivr.net/npm/docsify-cc-license/docsify-cc-license.js"></script>
+
+
+	<!-- 右侧标题导航 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/docsify-plugin-toc.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script src="//unpkg.zhimg.com/docsify-plugin-toc"></script>
+
+
+	<!-- docsify-waline简单的评论插件 -->
+	<!-- <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script> -->
+	<!-- <script src="//cdn.jsdelivr.net/npm/docsify-waline/docsify-waline.min.js"></script> -->
+
+
+	<!-- 为每个 docsify markdown 添加更新时间 -->
+	<!-- 本地资源 -->
+	<script src="assets/js/time-updater.js"></script>
+	<!-- 远程服务器资源 -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/docsify-updated@1/src/time-updater.js"></script> -->
+
+
+	<!-- docsify plugin: 漂亮的提示窗口 -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-plugin-flexible-alerts.js"></script>
+	<!-- 远程服务器资源 -->
+	<!-- <script src="//unpkg.zhimg.com/docsify-plugin-flexible-alerts"> </script> -->
+
+
+	<!-- 全文搜索插件会根据当前页面上的超链接获取文档内容 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/search.min.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+
+	<!-- 在所有的代码块上添加一个简单的Click to copy按钮来允许用户从你的文档中轻易地复制代码 -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-copy-code.min.js"></script>
+	<!-- 远程服务器资源 -->
+	<!-- <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script> -->
+
+
+	<!-- docsify的章节分页导航插件 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/docsify-pagination.min.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script> -->
+	<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
+
+	<!-- 提供了统计中文汉字和英文单词的功能 -->
+	<!-- 本地资源问题 -->
+	<!-- <script src="assets/js/docsify-count.js"></script> -->
+	<!-- 远程服务器资源 -->
+	<script src="//unpkg.zhimg.com/docsify-count/dist/countable.js"></script>
+
+
+	<!-- 基于Docsify的页面滚动回顶部的插件 -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-scroll-to-top.min.js"></script>
+	<!-- 远程服务器资源 -->
+	<!-- <script src="//unpkg.zhimg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script> -->
+	<!-- <script src="//unpkg.com/@zhg-x/docsify-plugins@1.0.2/src/scroll-to-top.js"></script> -->
+
+
+	<!-- 图片缩放，鼠标放到一张图片上时会出现缩小或者放大的图标，点击后就可以改变图片的形态 -->
+	<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+
+
+	<!-- 切换夜间模式 -->
+	<script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"
+		type="text/javascript"></script>
+
+
+	<!-- 评论系统 -->
+	<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+	<script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
+
+
+
+	<!-- Docsify v4 -->
+	<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+
+
+	<!-- 不同代码的高亮 -->
+	<script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-c.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-cpp.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-java.min.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-java.min.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-java.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-bash.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-sql.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-php.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-python.js"></script>
+	<!-- <script src="//unpkg.com/prismjs/components/prism-html.js"></script> -->
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-css.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs/components/prism-c.js"></script>
+	<script src="//unpkg.zhimg.com/prismjs@1.23.0/components.js"></script>
+
+
+
+</body>
+
+</html>
