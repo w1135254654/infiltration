@@ -1,9 +1,17 @@
 
+<img src="assets/image/渗透测试系统Kali_Linux/Kali_Linux/一、Kali_Linux 简介/Kali Linux图标.png" alt="Kali Linux图标" align=center />
+
 `Kali Linux` 前身是`BackTrack Linux`发行版。是一个基于 `Debian` 的 `Linux` 发行版，旨在进行高级渗透测试和安全审计。`Kali Linux` 包 含数百种工具，适用于各种信息安全任务，如渗透测试，安全研究，计算机取证和逆向工程。`Kali Linux` 由公司 `Offensive Security Ltd`开发，资助和维护。最先由`Offensive Security`的`MatiAharoni`和`Devon Kearns`通过重写`Back Track`来完成。
 
 `Kali Linux`有32位和64位的镜像，可用于x86指令集。同时它还有基于ARM架构的镜像，可用于树莓派和三星的ARM Chromebook。用户可通过硬盘、Live CD或Live USB来运行Kali Linux操作系统。
 
 ----------
+
+## 官方下载 Kali Linux 
+
+> 官方网址：https://www.kali.org/get-kali/#kali-platforms 
+
+下载方式分两种：`http` 下载和 `bt` 下载（**由于是国外网站 http 方式下载会非常慢**）。
 
 `Offensive` <kbd>[əˈfensɪv]</kbd> 攻击性的; `Offensive Security` 进攻性安全
 
@@ -25,3 +33,11 @@
 > 6. **GPG 签名包和存储库**： Kali Linux 中的每个包都由构建和提交它的每个开发人员签名，并且存 储库随后也会对包签名。
 > 
 > 7. **ARMEL 和 ARMHF 支持**： Kali Linux 可用于各种 ARM 设备。
+
+
+<img src="assets/image/渗透测试系统Kali_Linux/Kali_Linux/一、Kali_Linux 简介/官方下载 Kali Linux/官网kali下载.png" alt="官网kali下载" align=center />
+
+<img src="assets/image/渗透测试系统Kali_Linux/Kali_Linux/一、Kali_Linux 简介/官方下载 Kali Linux/选择kali镜像文件下载.png" alt="选择kali镜像文件下载" align=center />
+
+<img src="assets/image/渗透测试系统Kali_Linux/Kali_Linux/一、Kali_Linux 简介/官方下载 Kali Linux/下载kali种子文件.png" alt="下载kali种子文件" align=center />
+
