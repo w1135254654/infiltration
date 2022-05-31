@@ -160,7 +160,7 @@ iface eth0 inet dhcp
 ```
 
 > [!tip|style:flat]
-> 注：如果使用 `ystemctl restart networking` 重启网络服务，有时需要执行两次才能生效。所以最 好先 `stop` 再 `start networking`
+> 注：如果使用 `systemctl restart networking` 重启网络服务，有时需要执行两次才能生效。所以最 好先 `stop` 再 `start networking`
 
 ```kali
 ┌──(root�xuegod53)-[~] 
