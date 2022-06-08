@@ -26,8 +26,8 @@ function plugin(hook, vm) {
         let readTime = Math.ceil(wordsCount / 400) + " min"
         //Determine whether to use the Chinese style according to the attribute "language"
         if (defaultOptions.language === "chinese") {
-            str = wordsCount + " å­—"
-            readTime = Math.ceil(wordsCount / 400) + " åˆ†é’Ÿ"
+            str = wordsCount + " 字"
+            readTime = Math.ceil(wordsCount / 400) + " 分钟"
         }
 
         //add html string

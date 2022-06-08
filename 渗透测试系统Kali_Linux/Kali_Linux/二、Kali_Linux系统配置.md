@@ -1,4 +1,8 @@
 
+<kbd>ctrl+shift+ +</kbd> 终端字体放大 
+
+<kbd>ctrl+ -</kbd> 终端字体缩小
+
 ### 启用对 `root` 用户的访问
 
 

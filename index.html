@@ -15,6 +15,8 @@
 
 	<!-- 项目初始化时获取默认主题的版本 -->
 	<!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> -->
+	<!-- 修改unpkg.com -->
+	<!-- <link rel="stylesheet" href="//unpkg.com/docsify@4/lib/themes/vue.css"> -->
 	<!-- 修改unpkg.com后部署本地 -->
 	<link rel="stylesheet" href="assets/css/docsify@4-lib-themes-vue.css">
 
@@ -41,6 +43,13 @@
 	<!-- <script src="assets/css/docsify-view-source.css"></script> -->
 	<!-- 远程服务器资源 -->
 	<link rel="stylesheet" href="//unpkg.com/docsify-view-source/styles.css" />
+
+
+	<!-- 右侧标题导航 -->
+	<!-- 本地资源 -->
+	<link rel="stylesheet" href="assets/css/docsify-plugin-toc.css">
+	<!-- 远程服务器资源 -->
+	<!-- <link rel="stylesheet" href="https://unpkg.com/docsify-plugin-toc@1.3.1/dist/light.css"> -->
 
 
 	<style>
@@ -307,16 +316,16 @@
 
 
 	<!-- 文档化打印 -->
-	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/printjs-4de6-kxcdn-com.min.js"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/printjs-4de6-kxcdn-com.min.js"></script>
 	<!-- 远程服务器资源 -->
-	<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/docsify-print.js"></script> -->
+	<!-- <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-print.js"></script>
 	<!-- 远程服务器资源 -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/docsify-print@latest/dist/index.js"></script> -->
 	<!-- 修改unpkg.com -->
-	<script src="https://unpkg.com/docsify-print@latest/dist/index.js"></script>
+	<!-- <script src="https://unpkg.com/docsify-print@latest/dist/index.js"></script> -->
 
 
 	<!-- 单击查看源代码 -->
@@ -327,10 +336,10 @@
 
 
 	<!--Docsify的页脚增强插件 -->
-	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/docsify-footer-enh.js"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-footer-enh.js"></script>
 	<!-- 远程服务器资源 -->
-	<script src="//unpkg.com/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script>
+	<!-- <script src="//unpkg.com/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script> -->
 
 
 	<!--docsify 插件：使用 pangu.js 给网页上的中文和英文、数字、符号之间添加空格 -->
@@ -348,10 +357,10 @@
 
 
 	<!-- 右侧标题导航 -->
-	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/docsify-plugin-toc.js"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-plugin-toc.min.js"></script>
 	<!-- 远程服务器资源 -->
-	<script src="//unpkg.zhimg.com/docsify-plugin-toc"></script>
+	<!-- <script src="https://unpkg.com/docsify-plugin-toc@1.3.1/dist/docsify-plugin-toc.min.js"></script> -->
 
 
 	<!-- docsify-waline简单的评论插件 -->
@@ -374,12 +383,12 @@
 
 
 	<!-- 全文搜索插件会根据当前页面上的超链接获取文档内容 -->
-	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/search.min.js"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/search.min.js"></script>
 	<!-- 远程服务器资源挂了 -->
 	<!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script> -->
 	<!-- 修改unpkg.com -->
-	<script src="https://unpkg.zhimg.com/docsify/lib/plugins/search.min.js"></script>
+	<!-- <script src="https://unpkg.com/docsify/lib/plugins/search.min.js"></script> -->
 
 
 	<!-- 在所有的代码块上添加一个简单的Click to copy按钮来允许用户从你的文档中轻易地复制代码 -->
@@ -390,20 +399,20 @@
 
 
 	<!-- docsify的章节分页导航插件 -->
-	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/docsify-pagination.min.js"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify-pagination.min.js"></script>
 	<!-- 远程服务器资源挂了 -->
 	<!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script> -->
 	<!-- <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script> -->
 	<!-- 修改unpkg.com -->
-	<script src="https://unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+	<!-- <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script> -->
 
 
 	<!-- 提供了统计中文汉字和英文单词的功能 -->
 	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/docsify-count.js"></script> -->
+	<script src="assets/js/docsify-count.js"></script>
 	<!-- 远程服务器资源 -->
-	<script src="//unpkg.zhimg.com/docsify-count/dist/countable.js"></script>
+	<!-- <script src="//unpkg.zhimg.com/docsify-count/dist/countable.js"></script> -->
 
 
 	<!-- 基于Docsify的页面滚动回顶部的插件 -->
@@ -415,12 +424,12 @@
 
 
 	<!-- 图片缩放，鼠标放到一张图片上时会出现缩小或者放大的图标，点击后就可以改变图片的形态 -->
-	<!-- 本地资源问题 -->
-	<!-- <script src="assets/js/zoom-image.min.js"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/zoom-image.min.js"></script>
 	<!-- 远程服务器资源挂了 -->
 	<!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script> -->
 	<!-- 修改unpkg.com -->
-	<script src="https://unpkg.zhimg.com/docsify/lib/plugins/zoom-image.min.js"></script>
+	<!-- <script src="https://unpkg.zhimg.com/docsify/lib/plugins/zoom-image.min.js"></script> -->
 
 
 	<!-- 切换夜间模式 -->
@@ -429,15 +438,22 @@
 
 
 	<!-- 评论系统 -->
-	<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-	<script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
+	<!-- 本地资源 -->
+	<script src='assets/js/Valine.min.js'></script>
+	<!-- 远程服务器资源 -->
+	<!-- <script src='//unpkg.com/valine/dist/Valine.min.js'></script> -->
+	<!-- 本地资源 -->
+	<script src='assets/js/docsify-valine.min.js'></script>
+	<!-- <script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script> -->
 
 
 
 	<!-- Docsify v4 -->
 	<!-- <script src="//cdn.jsdelivr.net/npm/docsify@4"></script> -->
 	<!-- 修改unpkg.com后 -->
-	<script src="//unpkg.com/docsify@4"></script>
+	<!-- <script src="//unpkg.com/docsify@4"></script> -->
+	<!-- 本地资源 -->
+	<script src="assets/js/docsify@4.js"></script>
 
 
 	<!-- 不同代码的高亮 -->
