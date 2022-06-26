@@ -3,6 +3,11 @@
 
 <kbd>ctrl+ -</kbd> 终端字体缩小
 
+> [!attention|style:flat]
+> <span style='color: red'>`gedit`以文本编辑器： </span><br/>
+> 输入命令<span style='color: red'>`gedit /etc/network/interfaces`</span>【使用gedit是以文本编辑器的形式打开，方便菜鸡对vi和vim是不熟练】
+
+
 ### 启用对 `root` 用户的访问
 
 
@@ -102,6 +107,9 @@ deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
 > 说明：`deb` 代表软件的位置，`deb-src` 代表软件的源代码的位置
 
 ###### 使用 `apt` 新的软件包源获取最新的软件包列表。
+
+**apt命令概述**：apt是一条linux命令，适用于deb包管理式的操作系统，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件或操作系统。**deb包是Debian软件包格式的文件扩展名**。
+
 
 > **`apt update` 的作用是从`/etc/apt/sources.list` 文件中定义的源中获取的最新的软件包列表**
 > **即运行 `apt update` 并没有更新软件，而是相当于 windows 下面的检查更新，获取的是软件的状态**
@@ -224,9 +232,34 @@ deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
 | `apt install 【包名】apache2`| 安装软件包  				    | 输入 `n`，不安装 |
 | `apt remove 【包名】apache2` | 移除软件包                   | 输入 `n`，不删除 |
 | `apt update`    	 		  | 更新可用软件包列表      	    | 				  |
-| `apt upgrade 【包名】apache2`| 通过 安装/升级 软件来更新系统  | 输入 `n`，不更新  |
+| `apt upgrade 【包名】apache2`| 通过 安装/升级 软件来更新系统  | 输入 `n`，不更新 |
 | `apt full-upgrade`  		  | 通过 卸载/安装/升级 来更新系统 |				 |
-| `vim /etc/apt/sources.list` | 编辑软件源信息文件			    | 				 |
+| `vim /etc/apt/sources.list` | 编辑软件源信息文件			| 				 |
+
+
+----------
+
+## 安装VM-Tools实现物理机和Kali自由复制文件
+
+经测试,安装`open-vm-tools`替代`VMware tools` 能够完美实现“**自动适应客户机**”<span style='color: red'>(即自动适应客户机的分辨率,随意改变窗口大小)和与宿主机之间文件的复制粘贴功能</span>
+
+
+> 安装最新`vmtools`相关的软件包，`fuse`是用户空间文件系统(`Filesystem in Userspace`),实现物理机和kali之间自由拖拽文件和复制内容。
+
+```kali
+┌──(root�xuegod53)-[~] 
+└─# apt update	# 先检查更新
+```
+
+```kali
+┌──(root�xuegod53)-[~] 
+└─# apt install open-vm-tools-desktop fuse	# 在执行安装软件
+```
+
+```kali
+┌──(root�xuegod53)-[~] 
+└─# reboot	# 安装好后，在重启系统
+```
 
 
 ## 关闭 kali 系统自动锁屏功能
