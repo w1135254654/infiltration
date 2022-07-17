@@ -98,7 +98,7 @@ passwd：已成功更新密码
 
 └─# dig @114.114.114.114 any 12306.cn	# 显示所有类型的域名记录查询信息
 
-└─# dig -x 114.114.114.114				# 参数 IP 反查域名服务器
+└─# dig -x 114.114.114.114				# 使用 -x 参数 IP 反查域名服务器
 
 └─# dig txt chaos version.bing @ns3.dnsv4.com		查询 DNS 服务器 bind 版本信息
 
@@ -149,11 +149,200 @@ passwd：已成功更新密码
 
 ┌──(root xuegod53)-[~]
 └─# fping -ag 192.168.1.0/24 -c 1 > fping.txt		# 查看该范围有哪些主机存活
-
 或
-
 └─# fping -ag 192.168.1.1 192.168.1.254 -c 1 > fping.txt	# 查看该范围有哪些主机存活
-
 
 └─# cat fping.txt		# 输出存活的主机
 ```
+
+### 基于 `Nmap` 的扫描方式
+
+#### `Nmap` 的基本扫描方式
+
+```kali
+参数说明：-sn 表示只 ping 扫描，不进行端口扫描
+
+┌──(root xuegod53)-[~]
+└─# nmap -sn 192.168.1.0/24        # 扫描在线存活主机
+或
+└─# nmap -sn 192.168.1.1-254        # 扫描在线存活主机
+```
+
+#### 使用 `nmap` 进行半连接扫描
+
+```kali
+参数说明：
+-p  表示端口号
+-sS 表示使用 SYN 进行半连接扫描，去掉该参数表示使用全连接扫描
+
+┌──(root xuegod53)-[~]
+└─# nmap -sS 127.0.0.1 -p 80,81,21,25,110,443        # 查看指定哪些端口是开放的
+或
+└─# nmap -sS 101.200.128.35 -p 0-3000        # 扫描哪些端口是开放的
+```
+
+#### 使用 `nmap` 进行僵尸扫描
+
+```kali
+参数说明：
+-p 1-1024 #指定扫描的端口范围为 1 到 1024。只扫描常用端口就可以了
+--script=ipidseq.nse 判断主机是否可以当做僵尸主机
+
+┌──(root xuegod53)-[~]
+└─# nmap 192.168.1.0/24 -p 1-1024 --script=ipidseq.nse > a.txt    # 扫描哪些主机ipId是自增的
+
+└─# vim a.txt #在文档中查找关键字 Incremental
+```
+
+```kali
+参数说明：
+63 为目标主机
+-sI 参数表示指定僵尸主机进行扫描目标主机。注意是 I 大写的 
+54 为僵尸主机
+-p 1-100 #指定扫描的端口范围为 1 到 100
+
+┌──(root xuegod53)-[~]
+└─# nmap 192.168.1.63 -sI 192.168.1.54 -p 1-100    # 指定僵尸主机进行扫描目标主机
+```
+
+
+### 使用 `nc` 扫描端口
+
+```kali
+参数说明：
+-nv 表示我们扫描的目标是个 IP 地址不做域名解析
+-w 表示超时时间
+-z 表示进行端口扫描
+1-100    表示端口号，也可以指定端口号扫描
+
+┌──(root xuegod53)-[~]
+└─# nc -nv -w 1 -z 192.168.1.1 1-100        # 扫描ip的端口是否开放
+```
+
+
+### 实战 - 使用 `scapy` 定制数据包进行高级扫描
+
+#### `scapy` 定制 `ARP` 协议
+
+```kali
+参数说明：
+>>> ARP().display() 
+###[ ARP ]### 
+ hwtype= 0x1     # 硬件类型
+ ptype= 0x800    # 协议类型
+ hwlen= 6        # 硬件地址长度（MAC）
+ plen= 4         # 协议地址长度（IP）
+ op= who-has     # who-has 查询
+ hwsrc= 00:0c:29:6a:cf:1d     # 源 MAC 地址
+ psrc= 192.168.1.53           # 源 IP 地址
+ hwdst= 00:00:00:00:00:00
+ pdst= 0.0.0.0                # 向谁发送查询请求
+
+>>> sr1(ARP(pdst="192.168.1.1"))		# 使用 sr1 函数向 192.168.1.1 发送 arp 请求的数据包
+
+```
+
+#### `scapy` 定制 `PING` 包
+
+```kali
+参数说明：
+IP().display()
+###[ IP ]### 
+ version= 4       # 版本:4,即 IPv4
+ ihl= None        # 首部长度
+ tos= 0x0         # 服务
+ len= None        # 总长度
+ id= 1            # 标识
+ flags= 
+ frag= 0          # 标志
+ ttl= 64          # 生存时间
+ proto= hopopt    # 传输控制协议 IPv6 逐跳选项
+ chksum= None     # 首部校验和
+ src= 127.0.0.1   # 源地址
+ dst= 127.0.0.1   # 目的地址
+
+ICMP().display()
+###[ ICMP ]### 
+ type= echo-request     # 类型，标识 ICMP 报文的类型
+ code= 0                # 代码
+ chksum= None           # 校验和
+ id= 0x0                # 标识
+ seq= 0x0
+
+>>> sr1(IP(dst="192.168.1.1")/ICMP(),timeout=1)		# 使用 sr1 函数向 192.168.1.1 进行发送数据包并接收数据包
+
+```
+
+#### `scapy` 定制 `TCP` 协议 `SYN` 请求
+
+```kali
+参数说明：
+>>> TCP().display() 
+###[ TCP ]### 
+ sport= ftp_data TCP     # 源端口
+ dport= http TCP         # 目的端口
+ seq= 0                  # 32 位序号
+ ack= 0                  # 32 位确认序号
+ dataofs= None           # 4 位首部长度 
+ reserved= 0             # 保留 6 位
+ flags= S                # 标志域，紧急标志、有意义的应答标志、推、重置连接标志、同步序列号标志、完成发送数据标志。按照顺序排列是：URG、ACK、PSH、RST、SYN、FIN
+ window= 8192            # 窗口大小
+ chksum= None            # 16 位校验和
+ urgptr= 0               # 优先指针
+ options= []             # 选项
+
+参数说明：
+flags=”S”    # 表示 SYN 数据包
+dport=80     # 表示目标端口 80
+
+>>> sr1(IP(dst="192.168.1.1")/TCP(flags="S" ,dport=80),timeout=1)		# 使用 sr1 函数向 192.168.1.1 定制 TCP 协议 SYN 请求，收到服务器 tcp 三次握手中的第二 个包，能收到回应，表示端口开放
+
+```
+
+
+### 僵尸扫描 - 实战
+
+#### 第一步：使用 `Scapy` 给僵尸主机发送的 `SYN/ACK` 数据包，将返回的数据包存入 `rz1`
+
+```kali
+参数说明：
+rz1 表示定义了一个变量来接受我们返回的数据包
+dst 表示我们的僵尸主机 IP
+dport=445 表示我们向僵尸主机的 445 端口发送数据包，XP 主机的 445 端口一般都是开启状态
+flags=“SA”表示发送 SYN/ACK
+
+┌──(root㉿kali)-[~]
+└─# scapy    # 先进入scapy工具
+
+>>> rz1=sr1(IP(dst="192.168.1.54")/TCP(dport=445,flags="SA"))     # 向僵尸主机发送数据包
+
+>>> rz1.display()
+```
+
+#### 第二步：攻击者修改 `IP` 包头的 `SRC` 字段为僵尸主机的 `IP`，伪装成僵尸主机给目标主机发 `SYN` 请求
+
+```kali
+参数说明：
+rt 表示定义了一个变量来接受我们返回的数据包
+src 表示伪造成僵尸主机的 IP 地址
+dst 表示将数据包发送目标主机
+dport 目标端口
+timeout 超时时间
+
+>>> rt=sr1(IP(src="192.168.1.54",dst="192.168.1.63")/TCP(dport=22),timeout=1)     # 伪装成僵尸主机给目标主机发送数据包
+```
+
+#### 第三步：攻击者再次向僵尸主机发送 `SYN/ACK` 确认包，获得 `IPID`
+
+```kali
+rz2=sr1(IP(dst="192.168.1.54")/TCP(dport=445,flags="SA"))      # 再次向僵尸主机发送数据包，获得 IPID
+```
+
+#### 实验结果查看
+
+```kali
+>>> rz1.display()     # 查看rz1变量中IPID
+
+>>> rz2.display()     # 查看rz2变量中IPID
+```
+
