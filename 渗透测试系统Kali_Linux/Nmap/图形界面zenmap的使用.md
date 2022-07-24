@@ -45,6 +45,9 @@ nmap -sS -sU -T4 -A -v
 参数说明：
 -sS TCP SYN 扫描 
 -sU UDP 扫描
+-T4 加快执行速度 
+-A 操作系统及版本探测 
+-v 显示详细的输出
 ```
 
 #### `TCP` 扫描`Intense scan,all TCP ports`
@@ -55,6 +58,9 @@ nmap -p 1-65536 -T4 -A -v
 
 参数说明：
 -p 指定端口扫描范围
+-T4 加快执行速度 
+-A 操作系统及版本探测 
+-v 显示详细的输出
 ```
 
 #### 非 `ping` 扫描`Intense scan,no ping`
@@ -63,7 +69,9 @@ nmap -p 1-65536 -T4 -A -v
 nmap -T4 -A -v -Pn
 
 参数说明：
+-T4 加快执行速度
 -A 操作系统及版本探测
+-v 显示详细的输出
 -Pn 非 ping 扫描
 ```
 
@@ -95,7 +103,9 @@ nmap -sV -T4 -O -F --version-light
 
 参数说明：
 -sV 探测端口及版本服务信息。 
+-T4 加快执行速度
 -O 开启 OS 检测 
+-F 快速模式
 --version-light 设定侦测等级为 2。
 ```
 
@@ -119,6 +129,8 @@ nmap 192.168.43.222
 #### 慢速全面扫描`Slow comprehensive scan`
 
 ```kali
+这种扫描方式，速度非常缓慢，但是优点在于扫描结果详细可靠，并且不易被防火墙拦截，不易被目标站点所过滤。
+
 nmap -sS -sU -T4 -A -v -PE -PP -PS80,443,-PA3389,-PU40125 -PY -g 53 --script all
 
 参数说明：
@@ -127,6 +139,15 @@ nmap -sS -sU -T4 -A -v -PE -PP -PS80,443,-PA3389,-PU40125 -PY -g 53 --script all
 -T4 加快执行速度
 -A 操作系统及版本探测
 -v 显示详细的输出
+-PE/PP/PM : 使用ICMP echo、 ICMP timestamp、ICMP netmask 请求包发现主机
+-PS/PA/PU/PY : 使用TCP SYN/TCP ACK或SCTP INIT/ECHO方式进行发现
+-PE、-PP : 参数指定了使用基于ICMP的timestamp、network request的主机发现
+-PS80,443 : 表示使用基于80、4443端口的TCP SYN的主机发现
+-PA 3389 : 表示使用基于3389端口的TCP ACK的主机发现
+-PU 40125 : 表示使用基于40125端口（之所以选择该端口，是因为该端口基本上不会被占用，这样当NMAP发包探测时，如果该主机存在，就会回复一个ICMP Echo Request包，这样NMAP就借此知道该主机存在了）UDP的主机发现
+-PY : 表示使用基于SCTP协议（流传输控制协议，Stream Control Transmission Protocol）的主机探测
+-g： 指定发送的端口号。表示使用指定的端口号53进行探测（这是因为一些防火墙或者包过滤器允许源端口为53（表示DNS的服务的端口）的数据包进入）
+--script : 为使用NES脚本
 ```
 
 
